@@ -1,34 +1,34 @@
-
-import * as RutinaController from './controllers/rutinas.controller.js';  // Importa el controlador
-import clienteRoutes from './routes/clientes.routes.js';
-import rutinaRoutes from './routes/rutinas.routes.js';
-import ejericiosRoutes from './routes/ejercicios.routes.js';
 import express from 'express';
-import clientesRoutes from './routes/clientes.routes.js';
-import ejerciciosRoutes from './routes/ejercicios.routes.js';
-import logrosRoutes from './routes/logros.routes.js'; // Importa las rutas de logros
-import rutinasRoutes from './routes/rutinas.routes.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-
+// Importar las rutas necesarias
+import clienteRoutes from './routes/clientes.routes.js';
+import rutinaRoutes from './routes/rutinas.routes.js';
+import ejerciciosRoutes from './routes/ejercicios.routes.js';
+import logrosRoutes from './routes/logros.routes.js';
 
 const app = express();
 
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json());
 
-// Aquí registras tus rutas
-app.use('/api/ejericios', ejericiosRoutes);
-app.use('/api/rutinas', rutinaRoutes);
+// Ruta raíz
+app.get('/', (req, res) => {
+  res.send('¡Bienvenido a mi API!');
+});
+
+// Registrar las rutas bajo el prefijo /api
 app.use('/api/clientes', clienteRoutes);
-
+app.use('/api/rutinas', rutinaRoutes);
 app.use('/api/ejercicios', ejerciciosRoutes);
-app.use('/api/logros', logrosRoutes); // Prefijo necesario
-app.use('/api/rutinas', rutinasRoutes);
+app.use('/api/logros', logrosRoutes);
 
-
-
+// Configuración del servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
+
