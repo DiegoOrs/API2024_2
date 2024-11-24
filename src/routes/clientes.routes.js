@@ -1,13 +1,13 @@
-import { Router } from "express";
-import {getClientes, getclientesxid,postCliente,putCliente,patchCliente,deleteCliente} from '../controladores/clientesCtrl.js'
-const router=Router()
-//armar nuestras rutas
+import { Router } from 'express';
+import * as ClienteController from '../controllers/clientes.controller.js';
 
-router.get('/clientes',getClientes)  //select
-router.get('/clientes/:id',getclientesxid)  //select x id
-router.post('/clientes',postCliente)  //insert
-router.put('/clientes/:id',putCliente)  //update
-router.patch('/clientes/:id',patchCliente)  //update
-router.delete('/clientes/:id',deleteCliente)  //delete
+const router = Router();
 
-export default router
+// Rutas para clientes
+router.get('/', ClienteController.getClientes); // GET /api/clientes
+router.get('/:id', ClienteController.getClienteById); // GET /api/clientes/:id
+router.post('/', ClienteController.createCliente); // POST /api/clientes
+router.put('/:id', ClienteController.updateCliente); // PUT /api/clientes/:id
+router.delete('/:id', ClienteController.deleteCliente); // DELETE /api/clientes/:id
+
+export default router;
