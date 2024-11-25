@@ -6,6 +6,7 @@ import rutinasRoutes from './routes/rutinas.routes.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import logrosRoutes from './routes/logros.routes.js'; 
+import authRoutes from './routes/auth.routes.js'; 
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use('/api/ejercicios', ejerciciosRoutes);
 app.use('/api/logros', logrosRoutes); // Prefijo necesario
 app.use('/api/rutinas', rutinasRoutes);
+app.use('/api', authRoutes);
 
 app.listen(3000, () => {
   console.log('Servidor en puerto 3000');
