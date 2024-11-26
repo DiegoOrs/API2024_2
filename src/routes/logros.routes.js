@@ -1,12 +1,12 @@
-import express from 'express';
-import * as logrosController from '../controllers/logros.controller.js';
+import { Router } from 'express';
+import { getLogros, getLogroxid, postLogro } from '../controllers/logros.Ctrl.js';
+import { verifyToken } from '../middlewares/authMiddleware.js';
 
-const router = express.Router();
 
-router.get('/', logrosController.getLogros);
-router.get('/:id', logrosController.getLogroById); // Obtener un logro por ID
-router.post('/', logrosController.createLogro); // Crear un nuevo logro
-router.put('/:id', logrosController.updateLogro); // Actualizar un logro
-router.delete('/:id', logrosController.deleteLogro); // Eliminar un logro
+const router = Router();
+
+router.get('/logros', verifyToken, getLogros); // Obtener todos los logros
+router.get('/logros/:id', verifyToken, getLogroxid); // Obtener un logro por id
+router.post('/logros', verifyToken, postLogro); // Crear un logro
 
 export default router;

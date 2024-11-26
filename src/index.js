@@ -1,33 +1,31 @@
 import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-
-// Importar las rutas necesarias
-import clienteRoutes from './routes/clientes.routes.js';
-import rutinaRoutes from './routes/rutinas.routes.js';
-import ejerciciosRoutes from './routes/ejercicios.routes.js';
-import logrosRoutes from './routes/logros.routes.js';
-
+import usuariosRoutes from './routes/usuarios.routes.js'; // Importa las rutas de usuarios
+import ejerciciosRoutes from './routes/ejercicios.routes.js'; // Importa las rutas de usuarios
+import comunidadRoutes from './routes/comunidad.routes.js';
+import motivacionesRoutes from './routes/motivaciones.routes.js';
+import notificacionesRoutes from './routes/notificaciones.routes.js';
+import rachaRoutes from './routes/racha.routes.js'; // Importa las rutas de rachas
+import recompensasRoutes from './routes/recompensas.routes.js';
+import rutinasRoutes from './routes/rutinas.routes.js';
+import procesoRoutes from './routes/proceso.routes.js';
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
+// Middleware para parsear JSON
 app.use(express.json());
 
-// Ruta raíz
-app.get('/', (req, res) => {
-  res.send('¡Bienvenido a mi API!');
-});
+// Rutas
+app.use('/api', usuariosRoutes); // Rutas de usuarios bajo el prefijo /api
+app.use('/api', ejerciciosRoutes);
+app.use('/api', comunidadRoutes);
+app.use('/api', motivacionesRoutes);
+app.use('/api', notificacionesRoutes);
+app.use('/api/rachas', rachaRoutes);
+app.use('/api/recompensas', recompensasRoutes);
+app.use('/api', rutinasRoutes);
+app.use('/api/procesos', procesoRoutes);
 
-// Registrar las rutas bajo el prefijo /api
-app.use('/api/clientes', clienteRoutes);
-app.use('/api/rutinas', rutinaRoutes);
-app.use('/api/ejercicios', ejerciciosRoutes);
-app.use('/api/logros', logrosRoutes);
-
-// Configuración del servidor
-const PORT = process.env.PORT || 3000;
+// Inicia el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

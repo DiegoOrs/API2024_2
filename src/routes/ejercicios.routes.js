@@ -1,14 +1,21 @@
-import express from 'express';
-import * as ejerciciosController from '../controllers/ejercicios.controller.js';
+import { Router } from 'express';
+import {createEjercicio,getEjercicios,getEjercicioById,updateEjercicio,deleteEjercicio} from '../controllers/ejercicios.Ctrl.js';
 
-const router = express.Router();
+const router = Router();
 
-// Definir rutas
-router.get('/', ejerciciosController.getEjercicios);
-router.get('/:id', ejerciciosController.getEjercicioById);
-router.post('/', ejerciciosController.createEjercicio);
-router.put('/:id', ejerciciosController.updateEjercicio);
-router.delete('/:id', ejerciciosController.deleteEjercicio);
+// Crear un ejercicio
+router.post('/ejercicios', createEjercicio);
+
+// Obtener todos los ejercicios de un usuario
+router.get('/ejercicios/:usr_id', getEjercicios);
+
+// Obtener un ejercicio por ID
+router.get('/ejercicio/:id', getEjercicioById);
+
+// Actualizar un ejercicio
+router.put('/ejercicio/:id', updateEjercicio);
+
+// Eliminar un ejercicio
+router.delete('/ejercicio/:id', deleteEjercicio);
 
 export default router;
-
