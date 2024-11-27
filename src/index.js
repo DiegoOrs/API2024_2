@@ -43,8 +43,7 @@ app.use('/api/procesos', procesoRoutes);
 app.use((req, res) => {
   res.status(404).json({ message: 'Endpoint not found' });
 });
-const cors = require('cors');
-app.use(cors());
+
 // Inicia el servidor
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
