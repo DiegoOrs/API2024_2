@@ -12,7 +12,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware para parsear JSON
-app.use(express.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+
+const corsOptions = {
+  origin: ['http://localhost:8100', 'https://api2024-2-2-5tn4.onrender.com/api/'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.use(express.json()); // Para que interprete los objetos JSON
+app.use(express.urlencoded({ extended: true })); // Se añade para poder receptar formularios
 
 // Rutas
 app.use('/api', usuariosRoutes); // Rutas de usuarios bajo el prefijo /api

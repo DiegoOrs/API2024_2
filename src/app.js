@@ -17,11 +17,16 @@ const cors = require('cors');
 const app = express();
 
 // Permitir solicitudes de un dominio específico
-app.use(cors({
-    origin: '*', // Cambia esto al dominio de tu frontend en producción
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'] // Cabeceras permitidas
-}));
+const corsOptions = {
+  origin: ['http://localhost:8100', 'https://api2024-2-2-5tn4.onrender.com/api/'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.use(express.json()); // Para que interprete los objetos JSON
+app.use(express.urlencoded({ extended: true })); // Se añade para poder receptar formularios
+
 
 app.use(bodyParser.json());
 app.use('/api', usuariosRoutes);
