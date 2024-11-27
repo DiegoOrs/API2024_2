@@ -18,7 +18,7 @@ const app = express();
 
 // Permitir solicitudes de un dominio específico
 app.use(cors({
-    origin: 'http://localhost:8100', // Cambia esto al dominio de tu frontend en producción
+    origin: '*', // Cambia esto al dominio de tu frontend en producción
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'] // Cabeceras permitidas
 }));
