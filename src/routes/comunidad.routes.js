@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createComunidad, getComunidad } from '../controllers/comunidad.controller.js';
+import { createComunidad, getComunidad, getComunidadById } from '../controllers/comunidad.controller.js';
 
 const router = Router();
 
@@ -8,5 +8,8 @@ router.post('/comunidad', createComunidad);
 
 // Ruta para obtener todas las publicaciones de la comunidad
 router.get('/comunidad', getComunidad);
+
+// Ruta para obtener una publicación específica por ID
+router.get('/comunidad/:id', getComunidadById);
 
 export default router;

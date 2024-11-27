@@ -24,6 +24,7 @@ export const createRutina = async (req, res) => {
 export const getRutinas = async (req, res) => {
   const { usuario_id } = req.params;
 
+
   console.log("ID del usuario recibido:", usuario_id);  // Para verificar que se recibe el ID correctamente
 
   try {
@@ -91,5 +92,14 @@ export const deleteRutina = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Error al eliminar la rutina' });
+  }
+};
+export const getAllRutinas = async (req, res) => {
+  try {
+    const [rutinas] = await conmysql.query('SELECT * FROM rutinas');
+    res.json(rutinas);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error al obtener las rutinas' });
   }
 };

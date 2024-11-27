@@ -5,6 +5,7 @@ import {
   getProcesoById,
   updateProceso,
   deleteProceso,
+  getAllProcesos,  // Asegúrate de importar la nueva función
 } from '../controllers/proceso.controller.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 
@@ -16,6 +17,8 @@ router.post('/', verifyToken, createProceso);
 // Obtener todos los procesos de un usuario
 router.get('/usuario/:usr_id', verifyToken, getProcesos);
 
+// Obtener todos los procesos (sin filtro por usuario)
+router.get('/', verifyToken, getAllProcesos);  // Nueva ruta para obtener todos los procesos
 
 // Obtener un proceso por su ID
 router.get('/:pro_id', verifyToken, getProcesoById);

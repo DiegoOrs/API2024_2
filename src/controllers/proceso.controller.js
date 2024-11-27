@@ -25,6 +25,7 @@ export const createProceso = async (req, res) => {
 export const getProcesos = async (req, res) => {
   const { usr_id } = req.params;
 
+
   console.log("ID del usuario recibido:", usr_id);  // Agrega esta línea para depurar
 
   try {
@@ -94,5 +95,16 @@ export const deleteProceso = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Error al eliminar el proceso' });
+  }
+
+};
+// Obtener todos los procesos
+export const getAllProcesos = async (req, res) => {
+  try {
+    const [procesos] = await conmysql.query('SELECT * FROM procesos');
+    res.json(procesos);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error al obtener los procesos' });
   }
 };

@@ -95,3 +95,14 @@ export const deleteEjercicio = async (req, res) => {
     return res.status(500).json({ message: 'Error al eliminar el ejercicio' });
   }
 };
+
+// Obtener todos los ejercicios de todos los usuarios
+export const getAllEjercicios = async (req, res) => {
+  try {
+    const [result] = await conmysql.query('SELECT * FROM ejercicios');
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error al obtener los ejercicios' });
+  }
+};

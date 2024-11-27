@@ -30,3 +30,20 @@ export const getComunidad = async (req, res) => {
     return res.status(500).json({ message: 'Error al obtener las publicaciones' });
   }
 };
+// Obtener una publicación específica por ID
+export const getComunidadById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [result] = await conmysql.query('SELECT * FROM comunidad WHERE id = ?', [id]);
+    
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'Publicación no encontrada' });
+    }
+
+    res.json(result[0]);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error al obtener la publicación' });
+  }
+};

@@ -22,7 +22,7 @@ app.use('/api', motivacionesRoutes);
 app.use('/api', notificacionesRoutes);
 app.use('/api/rachas', rachaRoutes);
 app.use('/api/recompensas', recompensasRoutes);
-app.use('/api', rutinasRoutes);
+app.use('/api/rutinas', rutinasRoutes);
 app.use('/api/procesos', procesoRoutes);
 
 // Inicia el servidor

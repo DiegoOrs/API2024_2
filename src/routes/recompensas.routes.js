@@ -4,6 +4,7 @@ import {
   createRecompensa,
   updateRecompensa,
   deleteRecompensa,
+  getAllRecompensas,
 } from '../controllers/recompensas.controller.js';
 
 const router = Router();
@@ -19,5 +20,7 @@ router.put('/:id', updateRecompensa);
 
 // Ruta para eliminar una recompensa
 router.delete('/:id', deleteRecompensa);
+// Ruta para obtener todas las recompensas
+router.get('/', getAllRecompensas);
 
 export default router;

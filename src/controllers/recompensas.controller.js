@@ -93,3 +93,13 @@ export const deleteRecompensa = async (req, res) => {
     return res.status(500).json({ message: 'Error al eliminar la recompensa' });
   }
 };
+// Obtener todas las recompensas
+export const getAllRecompensas = async (req, res) => {
+  try {
+    const [result] = await conmysql.query('SELECT * FROM recompensas');
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error al obtener las recompensas' });
+  }
+};
