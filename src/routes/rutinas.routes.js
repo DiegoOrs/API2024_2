@@ -1,4 +1,4 @@
-import express from 'express';
+import { Router } from 'express';
 import {
   createRutina,
   getRutinas,
@@ -8,13 +8,16 @@ import {
 } from '../controllers/rutinas.Ctrl.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 
-const router = express.Router();
+const router = Router();
 
-// Rutas protegidas con middleware
-router.post('/rutinas', verifyToken, createRutina);  // Crear rutina
-router.get('/usuario/:usr_id', verifyToken, getRutinas);  // Obtener rutinas por usuario
-router.get('/:rut_id', verifyToken, getRutinaById);  // Obtener rutina por ID
-router.put('/:rut_id', verifyToken, updateRutina);  // Actualizar rutina
-router.delete('/:rut_id', verifyToken, deleteRutina);  // Eliminar rutina
+// Ruta para obtener las rutinas de un usuario
+router.get('/:usuario_id', verifyToken, getRutinas);  // Cambié '/:usuario_id' a '/:usr_id' según tu controlador
+
+
+// Otras rutas para crear, obtener por id, actualizar y eliminar rutinas
+router.post('/', verifyToken, createRutina);
+router.get('/rutina/:rut_id', verifyToken, getRutinaById);
+router.put('/rutina/:rut_id', verifyToken, updateRutina);
+router.delete('/rutina/:rut_id', verifyToken, deleteRutina);
 
 export default router;

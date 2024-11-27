@@ -16,6 +16,7 @@ router.post('/', verifyToken, createProceso);
 // Obtener todos los procesos de un usuario
 router.get('/usuario/:usr_id', verifyToken, getProcesos);
 
+
 // Obtener un proceso por su ID
 router.get('/:pro_id', verifyToken, getProcesoById);
 

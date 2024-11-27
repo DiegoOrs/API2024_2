@@ -23,7 +23,7 @@ export const createComunidad = async (req, res) => {
 // Obtener todas las publicaciones de la comunidad
 export const getComunidad = async (req, res) => {
   try {
-    const [result] = await conmysql.query('SELECT * FROM comunidad ORDER BY com_fecha DESC');
+    const [result] = await conmysql.query('SELECT * FROM comunidad ORDER BY fecha_publicacion DESC');
     res.json(result);
   } catch (error) {
     console.error(error);

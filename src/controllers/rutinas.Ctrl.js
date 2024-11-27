@@ -24,6 +24,8 @@ export const createRutina = async (req, res) => {
 export const getRutinas = async (req, res) => {
   const { usuario_id } = req.params;
 
+  console.log("ID del usuario recibido:", usuario_id);  // Para verificar que se recibe el ID correctamente
+
   try {
     const [rutinas] = await conmysql.query('SELECT * FROM rutinas WHERE usr_id = ?', [usuario_id]);
     if (rutinas.length === 0) {

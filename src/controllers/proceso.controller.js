@@ -25,8 +25,12 @@ export const createProceso = async (req, res) => {
 export const getProcesos = async (req, res) => {
   const { usr_id } = req.params;
 
+  console.log("ID del usuario recibido:", usr_id);  // Agrega esta línea para depurar
+
   try {
     const [procesos] = await conmysql.query('SELECT * FROM procesos WHERE usr_id = ?', [usr_id]);
+    console.log("Procesos encontrados:", procesos);  // Agrega esta línea para verificar la respuesta de la base de datos
+
     if (procesos.length === 0) {
       return res.status(404).json({ message: 'No se encontraron procesos para este usuario' });
     }
