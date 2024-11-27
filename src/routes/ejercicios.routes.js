@@ -17,7 +17,7 @@ router.post('/ejercicios', createEjercicio);
 router.get('/ejercicios/:usr_id', getEjercicios);
 
 // Obtener todos los ejercicios de todos los usuarios
-router.get('/ejercicios', getAllEjercicios); // Nueva ruta
+router.get('/', getAllEjercicios); // Nueva ruta
 
 // Obtener un ejercicio por ID
 router.get('/ejercicio/:id', getEjercicioById);
