@@ -11,7 +11,17 @@ import rachaRoutes from './routes/racha.routes.js';
 import recompensasRoutes from './routes/recompensas.routes.js';
 import rutinasRoutes from './routes/rutinas.routes.js';
 import procesoRoutes from './routes/proceso.routes.js';
+
+const express = require('express');
+const cors = require('cors');
 const app = express();
+
+// Permitir solicitudes de un dominio específico
+app.use(cors({
+    origin: 'http://localhost:8100', // Cambia esto al dominio de tu frontend en producción
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'] // Cabeceras permitidas
+}));
 
 app.use(bodyParser.json());
 app.use('/api', usuariosRoutes);
