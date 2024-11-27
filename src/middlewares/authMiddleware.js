@@ -16,4 +16,6 @@ export const verifyToken = (req, res, next) => {
     req.userId = decoded.id; // Guardar el ID del usuario decodificado en la solicitud
     next();
   });
+
+  
 };
